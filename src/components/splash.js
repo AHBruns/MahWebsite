@@ -6,8 +6,8 @@ class Splash extends Component {
     constructor(props) {
         super(props)
         this.shadowRef1 = null
-        this.shadowRef2 = null
-        this.shadowRef3 = null
+        // this.shadowRef2 = null
+        // this.shadowRef3 = null
     }
 
     componentDidMount() {
@@ -41,6 +41,7 @@ class Splash extends Component {
                         width: '100vw',
                         height: '62.5vh',
                         backgroundColor: 'rgba(40, 37, 46, 1)',
+                        // backgroundColor: 'rgba(255, 161, 66, 1)',
                         clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0 100%)',
                         position: 'absolute',
                         top: '0',
@@ -66,6 +67,7 @@ class Splash extends Component {
                         width: '100vw',
                         height: '62.5vh',
                         backgroundColor: 'rgba(40, 37, 46, 0.5)',
+                        // backgroundColor: 'rgb(255, 161, 66, 0.5)',
                         clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0 100%)',
                         position: 'absolute',
                         top: '0',
@@ -93,6 +95,23 @@ class Splash extends Component {
                             borderRadius: '0',
                             fontSize: '150%',
                             fontFamily: "'Roboto Mono', monospace",
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer'
+                        }}
+                        className='resume-button'
+                        onClick={() => {
+                            fetch('/dist/AlexBrunsResume.pdf')
+                                .then(resp => resp.blob())
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.style.display = 'none';
+                                    a.href = url;
+                                    a.download = 'AlexBrunsResume.pdf';
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    window.URL.revokeObjectURL(url);
+                                })
                         }}
                     >
                         Download My Résumé!
