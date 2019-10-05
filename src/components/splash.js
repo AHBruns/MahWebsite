@@ -54,10 +54,44 @@ class Splash extends Component {
                             margin: '0',
                             fontFamily: "'Roboto Mono', monospace",
                             fontWeight: 'bolder',
-                            fontSize: '500%'
+                            fontSize: '500%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                            textAlign: 'center'
                         }}
                     >
                         Hi, I'm Alex Bruns
+                        <button
+                        style={{
+                            margin: '2vh',
+                            padding: '10px',
+                            border: 'none',
+                            borderRadius: '0',
+                            fontSize: '30%',
+                            fontFamily: "'Roboto Mono', monospace",
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer'
+                        }}
+                        className='resume-button'
+                        onClick={() => {
+                            fetch('/AlexBrunsResume.pdf')
+                                .then(resp => resp.blob())
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.style.display = 'none';
+                                    a.href = url;
+                                    a.download = 'AlexBrunsResume.pdf';
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    window.URL.revokeObjectURL(url);
+                                })
+                        }}
+                    >
+                        Download My Résumé!
+                    </button>
                     </h1>
                 </div>
                 <div
@@ -76,55 +110,58 @@ class Splash extends Component {
                 </div>
                 <div
                     style={{
-                        width: '100vw',
-                        height: '62.5vh',
-                        position: 'absolute',
-                        top: '0',
-                        display: 'flex',
-                        alignItems: 'flex-end',
-                        justifyContent: 'center'
-                    }}
-                >
-                    <button
-                        style={{
-                            margin: '17vh',
-                            padding: '10px',
-                            border: 'none',
-                            borderRadius: '0',
-                            fontSize: '150%',
-                            fontFamily: "'Roboto Mono', monospace",
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer'
-                        }}
-                        className='resume-button'
-                        onClick={() => {
-                            fetch('/dist/AlexBrunsResume.pdf')
-                                .then(resp => resp.blob())
-                                .then(blob => {
-                                    const url = window.URL.createObjectURL(blob);
-                                    const a = document.createElement('a');
-                                    a.style.display = 'none';
-                                    a.href = url;
-                                    a.download = 'AlexBrunsResume.pdf';
-                                    document.body.appendChild(a);
-                                    a.click();
-                                    window.URL.revokeObjectURL(url);
-                                })
-                        }}
-                    >
-                        Download My Résumé!
-                    </button>
-                </div>
-                <div
-                    style={{
                         top: '62.5vh',
                         position: 'absolute',
                         paddingTop: '5vh',
-                        paddingBottom: '5vh',
-                        width: '100%'
+                        paddingBottom: '0vh',
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                     }}
                 >
                     <Terminal />
+                    <div style={{ height: '5vh' }} />
+                    <div
+                    style={{
+                        height: '75vh',
+                        width: '100%',
+                        backgroundColor: 'rgba(40, 37, 46, 1)',
+                        clipPath: 'polygon(0 25%, 100% 0, 100% 100%, 0 100%)',
+                        paddingTop: '25vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        
+                    }}
+                >
+                    <div style={{ flexBasis: '20px'}} />
+                    <h1
+                        style={{
+                                color: 'white',
+                                fontFamily: "'Roboto Mono', monospace",
+                                fontWeight: 'bolder',
+                        }}
+                    >
+                        What can this guy do?
+                    </h1>
+                    <div
+                        style={{
+                            backgroundColor: 'white',
+                            fontFamily: "'Roboto Mono', monospace",
+                            fontWeight: 'lighter',
+                            fontSize: '150%',
+                            maxWidth: '1000px',
+                            padding: '20px',
+                            textAlign: 'justify',
+                            borderRadius: '20px',
+                            margin: '0 10px',
+                            boxShadow: '0 1rem 3rem rgba(0,0,0,.35)',
+                        }}
+                    >
+                        I program a lot. So, instead of an itemized list of all the programming languages I've written meaningful code in, I built this thingy. Additionally, if you're into that itemized list style you can download a spec sheet for me <a>here</a>. 
+                    </div>
+                </div>
                 </div>
             </>
         )

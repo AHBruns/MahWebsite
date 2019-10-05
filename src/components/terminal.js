@@ -42,13 +42,21 @@ class Terminal extends Component {
         return (
             <div
                 style={{
-                    width: '100%',
+                    width: 'calc(100% - 40px)',
                     display: 'flex',
                     alignItems: 'center',
-                    flexDirection: 'column'
+                    flexDirection: 'column',
+                    height: '65vh',
+                    maxWidth: '1020px',
+                    padding: '20px 10px 0 10px',
+                    border: '1px solid black',
+                    margin: 'auto',
+                    overflow: 'scroll',
+                    margin: '10px'
                 }}
             >
                 {this.state.lines}
+                <div style={{ flexBasis: '20px', height: '20px', minHeight: '20px' }} />
             </div>
         )
     }

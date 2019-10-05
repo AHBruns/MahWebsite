@@ -16,6 +16,7 @@ module.exports = {
     devServer: {
         hot: true,
         historyApiFallback: true,
+        contentBase: path.join(__dirname, "dist"),
     },
     output: {
     },
