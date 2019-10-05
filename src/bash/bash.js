@@ -9,13 +9,17 @@ export function bash(cmd, context, lines) {
             state: {},
         }
     }
-    cmd = cmd.trim()
+    let s = cmd.trim()
+    cmd = s.split(" ")[0]
     switch (cmd) {
         case "help":
             output = help()
             break
         case "clear":
             outputLines = []
+            break
+        case "man":
+            output = man(s.split(" "))
             break
         default:
             output = [<><br/>sh: {cmd}: not found<br/><br/></>]
@@ -24,6 +28,43 @@ export function bash(cmd, context, lines) {
 }
 
 // built-ins
+
+const man = args => {
+    let output = []
+    if (args.length == 1) {
+        return [<><br/>What manual page do you want?<br/><br/></>]
+    }
+    switch (args[1]) {
+        case "help": 
+            output = [
+                <>
+                <br/>
+                <strong>NAME</strong>
+                <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>help</strong> - gives general info about the shell
+                <br/>
+                <br/>
+                <strong>SYNOPSIS</strong>
+                <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>help</strong> [<strong>-b</strong> <u>background</u>] [
+                    <strong>-e</strong> <u>education</u>] [<strong>-c</strong> <u>career</u>] [<strong>-t</strong> <u>technical</u>] ...
+                <br/>
+                <br/>
+                <strong>DESCRIPTION</strong>
+                <br/>
+                <br/>
+                <strong>OPTIONS</strong>
+                
+                <br/>
+                <br/>
+                </>
+            ]
+            break
+        default:
+            output = [<><br/>no manual entry for `{args[1]}`<br/><br/></>]
+    }
+    return output
+} 
 
 const help = () => {
     const output = [

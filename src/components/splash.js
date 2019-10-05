@@ -6,8 +6,6 @@ class Splash extends Component {
     constructor(props) {
         super(props)
         this.shadowRef1 = null
-        // this.shadowRef2 = null
-        // this.shadowRef3 = null
     }
 
     componentDidMount() {
