@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+            }
+            input:focus, textarea:focus, select:focus, button:focus{
+                outline: none;
+            }
+            .menu-exit-div:hover {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            .menu-open-div:hover {
+                transform: translateY(-10px) !important;
+            }
+            .resume-button:hover {
+                padding: 15px !important;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id='react-container-div'></div>
